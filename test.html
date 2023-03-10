@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<div style="display:flex; flex-direction: column;font-size:20px;">
+    <div >
+
+    <label>User ID</label>
+<input type='text' id='uid'>
+    </div>
+
+    <div>
+ <label>First Input</label>
+<input type='text' id='input1'>
+ </div>
+
+<div>
+<label>Last Name</label>
+<input type='text' id='input1'>
+</div>
+
+<div>
+    <label>Birthday</label>
+
+    <input type='date'>
+</div>
+
+<div style='margin-top:20px;'>
+    <button  style='height:40px;width:90px; font-size:20px;' id='acceptBtn'>accept</button>
+
+
+</div>
+
+<script>
+    const checkingObj={arrayUpper:[],
+        arrayLower:[]};
+    const uidEl=document.getElementById('uid');
+    document.getElementById('acceptBtn').addEventListener('click',()=>{
+const valueEl=uidEl.value.split(" ").join("")
+ 
+
+
+
+function containsNumbers(valueEl) {
+  return /[0-9]/.test(valueEl);
+}
+//console.log(checkLength(valueEl)===true)
+//console.log(checkUpperFun(valueEl)===true)
+
+//console.log(checkLower(valueEl))
+//console.log(containsNumbers(valueEl))
+
+if(checkLength(valueEl)===true &&checkUpperFun(valueEl)===true &&checkLower(valueEl) && containsNumbers(valueEl) ){
+window.alert(" ✅✅ ✅  User ID is contain Upper case,lower Case,Numbers and length between 8-12 and its been VERIFIED !!")
+uidEl.value=""
+}else{
+window.alert('❌ ❌❌Password is not fullfill ID requirment,your ID MUST has:\n UpperLetter,LowerLetter,Number,and length 8-12 ')
+uidEl.value=""
+
+}
+
+
+});
+
+
+function checkLower(valueEl1){
+    for(var j=0;j<valueEl1.length;j++){
+
+if(isNaN(valueEl1[j])){
+   if(valueEl1[j]===valueEl1[j].toLowerCase()){
+return true   
+
+}
+}
+
+}};
+
+
+
+
+    const checkUpperFun=function(valueEl1){
+        var valueEl3=valueEl1
+
+        for(var j=0;j<valueEl1.length;j++){
+
+            if(isNaN(valueEl1[j])){
+               if(valueEl1[j]===valueEl1[j].toUpperCase()){
+return true;    
+
+}
+
+            
+            }
+}
+};
+
+function checkLength(text){
+for(var i=0;i<text.length;i++){
+   if(text.length>=8 && text.length<=12){
+    return true
+   }else{
+    return "length is less than 8 or greater than 12"
+   }
+
+}
+}
+
+
+
+
+
+
+    // put your JavaScript code to read HTML inputs
+    // and validate inputs here using if statements
+    // and document.getElementById().innerHTML to display results
+    // write your JS functions here
+    // write your JS Loop For here to print the Xs
+    // use something like document.write(str.padStart(i,"x") + "<br>");
+        
+</script>
+
+</body>
+</html>
+ 
