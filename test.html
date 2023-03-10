@@ -17,13 +17,13 @@
 
 <div>
 <label>Last Name</label>
-<input type='text' id='lname' onfocus="onFocusText()">
+<input type='text' id='lname'>
 </div>
 
 <div>
     <label>Birthday</label>
 
-    <input type='date' id="birthday">
+    <input type='date' id="birthday" >
 </div>
 
 <div style='margin-top:20px;'>
@@ -34,14 +34,14 @@
 
 <script>
   
-    const uidEl=document.getElementById('uid');
-   uidEl.onclick=function(){
-     var userIPrompt=  prompt('user ID')
+    const uidEl=document.getElementById('uid')
+    const dateEl=document.getElementById('birthday').value;
+   document.getElementById('acceptBtn').addEventListener('click',function(){
 
 
-      if (userIPrompt.length!==0){
-        let valueEl=userIPrompt.split(" ").join("")
- console.log(valueEl)
+        let valueEl=uid.value.split(" ").join("")
+        let birthdatEl=dateEl.value;
+        console.log(birthdatEl)
 function containsNumbers(valueEl) {
 console.log(valueEl)
   return /[0-9]/.test(valueEl);
@@ -62,7 +62,7 @@ uidEl.value=""
 }
 
       }
-};
+   )
 
 
 function checkLower(valueEl1){
