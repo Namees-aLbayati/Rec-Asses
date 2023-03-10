@@ -17,7 +17,7 @@
 
 <div>
 <label>Last Name</label>
-<input type='text' id='input1'>
+<input type='text' id='input1' onfocus="onFocusText()">
 </div>
 
 <div>
@@ -33,19 +33,20 @@
 </div>
 
 <script>
-    const checkingObj={arrayUpper:[],
-        arrayLower:[]};
+  
     const uidEl=document.getElementById('uid');
-    document.getElementById('acceptBtn').addEventListener('click',()=>{
-const valueEl=uidEl.value.split(" ").join("")
- 
+   uidEl.onclick=function(){
+     var userIPrompt=  prompt('user ID')
 
 
-
+      if (userIPrompt.length!==0){
+        let valueEl=userIPrompt.split(" ").join("")
+ console.log(valueEl)
 function containsNumbers(valueEl) {
+console.log(valueEl)
   return /[0-9]/.test(valueEl);
 }
-//console.log(checkLength(valueEl)===true)
+//console.log(checkLength(valueEl))
 //console.log(checkUpperFun(valueEl)===true)
 
 //console.log(checkLower(valueEl))
@@ -60,8 +61,8 @@ uidEl.value=""
 
 }
 
-
-});
+      }
+};
 
 
 function checkLower(valueEl1){
@@ -108,8 +109,9 @@ for(var i=0;i<text.length;i++){
 
 
 
-
-
+function dateDiff(){
+    
+}
 
     // put your JavaScript code to read HTML inputs
     // and validate inputs here using if statements
