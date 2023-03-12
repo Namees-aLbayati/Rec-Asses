@@ -21,9 +21,14 @@
 </div>
 
 <div>
-    <label>Birthday</label>
+    <label for="DOB">Birthday:</label>
+    <input type="date" id="birthday" name="DOB">
+</div>
+<div style="color:green" id="birthdayContainer">
+</div>
+<div>
+    <p id="container2" style="color:blueviolet;font-size: 18px;"></p>
 
-    <input type='date' id="birthday" >
 </div>
 
 <div style='margin-top:20px;'>
@@ -33,15 +38,28 @@
 </div>
 
 <script>
-  
+      var lastName=document.getElementById('lname');
+
+var firstName=document.getElementById('fname');
+    var container=document.getElementById('birthdayContainer')
+ var container18=document.getElementById('container2');
+ 
+    var dateEl = document.getElementById("birthday");
+//console.log(new Date().toISOString().split('T')[0])
+  var TextArr=[];
+  var errorArr=[];
+dateEl.setAttribute('max',new Date().toISOString().split('T')[0])
+
     const uidEl=document.getElementById('uid')
-    const dateEl=document.getElementById('birthday').value;
-   document.getElementById('acceptBtn').addEventListener('click',function(){
+  
 
+    document.getElementById('acceptBtn').addEventListener('click',checkUserInput)
+function checkUserInput(){
 
-        let valueEl=uid.value.split(" ").join("")
-        let birthdatEl=dateEl.value;
-        console.log(birthdatEl)
+     if(firstName.value!==""&&lastName.value!==""&&uidEl.value!==""&&dateEl.value!=="")
+{
+
+let valueEl=uid.value.split(" ").join("")
 function containsNumbers(valueEl) {
 console.log(valueEl)
   return /[0-9]/.test(valueEl);
@@ -56,13 +74,35 @@ if(checkLength(valueEl)===true &&checkUpperFun(valueEl)===true &&checkLower(valu
 window.alert(" ✅✅ ✅  User ID is contain Upper case,lower Case,Numbers and length between 8-12 and its been VERIFIED !!")
 uidEl.value=""
 }else{
-window.alert('❌ ❌❌Password is not fullfill ID requirment,your ID MUST has:\n UpperLetter,LowerLetter,Number,and length 8-12 ')
+window.alert('❌ ❌❌ Invalid UserID')
 uidEl.value=""
 
 }
+dateDiff()
 
-      }
-   )
+      }else{
+
+if(firstName.value==""){
+    errorArr.push("First Name")
+}if(lastName.value==""){
+    errorArr.push("Last Name")
+
+}if(uidEl.value==""){
+    errorArr.push("UserID")
+
+}if(dateEl.value==""){
+    errorArr.push("Date")
+
+//&&uidEl.value!==""&&dateEl.value!=="")
+    }
+    console.log(errorArr)
+const errorMsg=errorArr.toString().replace(",,",", ");
+window.alert(`${errorMsg} Is/are Invalid `)
+errorArr=[]
+location.reload()
+}
+    }
+   
 
 
 function checkLower(valueEl1){
@@ -91,8 +131,7 @@ return true;
 
 }
 
-            
-            }
+      }
 }
 };
 
@@ -110,7 +149,59 @@ for(var i=0;i<text.length;i++){
 
 
 function dateDiff(){
-    
+
+    var dateValue=dateEl.value;
+
+
+    console.log('calender',typeof(dateValue))
+
+   const TodayDate=new Date().toLocaleDateString()
+
+   const YEAR = 365, MONTH = 30, WEEK = 7;
+
+   
+   var diff =  Math.floor(
+    (
+        Date.parse(
+          TodayDate
+    ) - Date.parse(
+            dateValue.replace(/-/,'\/')
+    )               
+    ) / 86400000);
+   console.log('diff',diff)
+   
+    var remain=diff%YEAR;
+    var yearNo=Math.floor(diff/YEAR);
+    console.log(yearNo,remain)
+
+   const monNo=Math.floor( remain/MONTH);
+   const dayNo=Math.floor( remain%MONTH)
+   console.log(container)
+ if(yearNo>=1){
+TextArr.push(`${yearNo} Years ,`)
+ }  if(monNo>=1){
+    TextArr.push(`${monNo} Moths,`)
+
+ }
+
+ TextArr.push(`${dayNo} Days.`)
+ const arratToStr=TextArr.toString()
+ const textToShow=arratToStr.replace(",,"," ,AND, ")
+
+
+container.innerHTML=`${firstName.value} ${lastName.value}: you have been breathing for  :${textToShow}`;
+console.log(yearNo,'year number',container18)
+if(yearNo>=18){
+container18.textContent='Your age is accepted to get the Class'
+TextArr=[]
+
+}else{
+    container18.textContent='You are probably not old enough to take this class!';
+    TextArr=[]
+
+}
+
+   
 }
 
     // put your JavaScript code to read HTML inputs
@@ -120,6 +211,7 @@ function dateDiff(){
     // write your JS Loop For here to print the Xs
     // use something like document.write(str.padStart(i,"x") + "<br>");
         
+
 </script>
 
 </body>
