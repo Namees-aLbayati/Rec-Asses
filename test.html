@@ -36,9 +36,13 @@
 
 
 </div>
+<section id="loopDisplay" style="margin-top:0">
+
+</section>
 
 <script>
-      var lastName=document.getElementById('lname');
+xsFuction() 
+     var lastName=document.getElementById('lname');
 
 var firstName=document.getElementById('fname');
     var container=document.getElementById('birthdayContainer')
@@ -71,7 +75,7 @@ console.log(valueEl)
 //console.log(containsNumbers(valueEl))
 
 if(checkLength(valueEl)===true &&checkUpperFun(valueEl)===true &&checkLower(valueEl) && containsNumbers(valueEl) ){
-window.alert(" ✅✅ ✅  User ID is contain Upper case,lower Case,Numbers and length between 8-12 and its been VERIFIED !!")
+window.alert(" ✅✅ ✅ UserID is Verified!!")
 uidEl.value=""
 }else{
 window.alert('❌ ❌❌ Invalid UserID')
@@ -79,6 +83,7 @@ uidEl.value=""
 
 }
 dateDiff()
+
 
       }else{
 
@@ -94,12 +99,12 @@ if(firstName.value==""){
     errorArr.push("Date")
 
 //&&uidEl.value!==""&&dateEl.value!=="")
+
     }
     console.log(errorArr)
 const errorMsg=errorArr.toString().replace(",,",", ");
 window.alert(`${errorMsg} Is/are Invalid `)
 errorArr=[]
-location.reload()
 }
     }
    
@@ -145,6 +150,21 @@ for(var i=0;i<text.length;i++){
 
 }
 }
+function xsFuction(){
+    const xsContainer=document.getElementById("loopDisplay");
+    let str = "";
+    for(var i=0;i<=20;i++){
+
+str += "".padStart(i,'x')+'<br>';
+//console.log(str)
+
+
+    }
+    xsContainer.innerHTML=str
+
+
+}
+
 
 
 
@@ -172,26 +192,30 @@ function dateDiff(){
    
     var remain=diff%YEAR;
     var yearNo=Math.floor(diff/YEAR);
-    console.log(yearNo,remain)
-
+    console.log("here0",yearNo,remain)
+console.log('1',Math.floor( remain/30),Math.floor( remain%MONTH))
    const monNo=Math.floor( remain/MONTH);
-   const dayNo=Math.floor( remain%MONTH)
-   console.log(container)
+   const dayNo=Math.floor( remain%MONTH);
+       console.log("here1",monNo,dayNo)
+console.log('1',Math.floor( remain/30),Math.floor( remain%MONTH))
+
  if(yearNo>=1){
-TextArr.push(`${yearNo} Years ,`)
+TextArr.push(`${yearNo} Years `)
  }  if(monNo>=1){
-    TextArr.push(`${monNo} Moths,`)
+    TextArr.push(`${monNo} Months`)
 
  }
 
  TextArr.push(`${dayNo} Days.`)
  const arratToStr=TextArr.toString()
- const textToShow=arratToStr.replace(",,"," ,AND, ")
+ const textToShow=arratToStr.replace(","," ,AND, ")
 
 
-container.innerHTML=`${firstName.value} ${lastName.value}: you have been breathing for  :${textToShow}`;
-console.log(yearNo,'year number',container18)
+container.innerHTML=`${firstName.value} ${lastName.value}: you have been breathing for  :${diff}Days \n
+###### your age is:${textToShow}`;
+console.log('Your age is accepted to get the Class')
 if(yearNo>=18){
+
 container18.textContent='Your age is accepted to get the Class'
 TextArr=[]
 
@@ -200,6 +224,9 @@ TextArr=[]
     TextArr=[]
 
 }
+
+
+
 
    
 }
